@@ -42,7 +42,7 @@ Mobile UI and responsive redesign are excluded from this audit and deferred unti
 ## Documentation and product-claim fixes
 
 - [x] Correct the share-link example in `DocsOverlay.tsx`; implementation uses hyphen-separated colors, while the example uses commas.
-- [ ] Remove, source, or date-stamp the competitor matrix. Its Coolors `$99` claim and several plan/feature limits are stale. Current first-party research and replacement recommendations are preserved in `COMPETITOR_RESEARCH.md`.
+- [ ] Remove, source, or date-stamp the competitor matrix. Its Coolors `$99` claim and several plan/feature limits are stale. Current first-party research and replacement recommendations are preserved in `COMPETITOR_RESEARCH.md`. The `/landing/` comparison table was removed in #19; the re-audit moved from alpha (A-07) to beta as B-11 on 2026-10-05.
 - [x] Correct remaining user-visible capitalization that violates the lowercase UI convention.
 - [x] Make the About-page feature-request and donation language point to real destinations or remove it.
 - [x] Rewrite `TODO.md` as an active alpha/beta/v1 roadmap. Release work now has stable task IDs and acceptance criteria; speculative product work is explicitly deferred. `RELEASE_ROADMAP.html` presents the same release gates and audit findings as a read-only engineering report.

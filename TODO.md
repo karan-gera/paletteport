@@ -1,6 +1,6 @@
 # PalettePort release TODO
 
-Last updated: 2026-09-14
+Last updated: 2026-10-05
 
 This file is the active release backlog. `AUDIT.md`, `PERFORMANCE_AUDIT.md`,
 `TESTING.md`, and `COMPETITOR_RESEARCH.md` contain the evidence behind it.
@@ -61,8 +61,8 @@ Measured in Helium 0.15.5.1 / Chromium 151 against the live GitHub Pages build.
 | Image-extraction longest task at 6x CPU | 170 ms | < 50 ms |
 | Cold/warm offline reload | fails | both pass |
 
-The static landing page reaches LCP in 772 ms on the worst profile, with 0.040
-CLS and no long tasks. The constraint is the app startup path, not the base CSS.
+The static landing page (since removed in #19) reached LCP in 772 ms on the worst
+profile, with 0.040 CLS and no long tasks. The constraint is the app startup path, not the base CSS.
 
 ### Other audit findings
 
@@ -78,7 +78,7 @@ CLS and no long tasks. The constraint is the app startup path, not the base CSS.
   findings without a direct-dependency major-version upgrade.
 - The share-link documentation uses commas, while the encoder uses hyphens.
 - Competitor copy contains stale or overbroad claims. The dated evidence and safe
-  replacements are in `COMPETITOR_RESEARCH.md`.
+  replacements are in `COMPETITOR_RESEARCH.md`; the re-audit is tracked as B-11.
 - The production URL is `https://paletteport.app/`; DNS and GitHub Pages custom
   domain activation remain before the address is live.
 - Mobile layout and mobile UI are explicitly outside the desktop release scope.
@@ -121,7 +121,8 @@ release issue remains.
     declares the custom domain.
   - First visits open directly into the workspace with a one-time orientation
     dialog for help and keyboard shortcuts.
-  - The optional promotional page remains directly available at `/landing/`.
+  - The optional promotional page was served at `/landing/` until #19 removed the
+    route on 2026-09-13.
   - Spaceship DNS points the apex to all four GitHub Pages addresses, `www` to
     `karan-gera.github.io`, and retains the GitHub verification TXT record.
   - GitHub verified the domain, accepted the repository custom domain, completed
@@ -174,10 +175,6 @@ release issue remains.
     lock values.
   - Documentation, shortcut, export, dialog, and preview-control labels follow
     the lowercase convention; code output and preview artwork keep intentional case.
-- [ ] **A-07 P0 — replace the stale competitor matrix.**
-  - Use the conservative comparison in `COMPETITOR_RESEARCH.md`.
-  - Include source URLs and the research date with quota or price facts.
-  - Render unknown as unknown, not as feature absence.
 - [x] **A-08 P1 — refresh the About page. ✅**
   - Rework the content and visual hierarchy around what PalettePort does, who it
     is for, the desktop-only alpha scope, browser-local storage, and project
@@ -350,12 +347,23 @@ release issue remains.
   - Added a 96-entry varying-size undo/redo regression ending on a blank palette,
     metadata uniqueness and migration checks, lock-identity coverage, and a rendered
     regression that distinguishes normal animation continuity from history isolation.
+- [ ] **B-11 P0 — re-audit and rebuild competitor claims (re-audit pending).**
+  - Moved from alpha (formerly A-07) on 2026-10-05 by owner decision: the current
+    alpha surface is acceptable, so the competitor work no longer gates alpha.
+  - The “what we give free” comparison table no longer ships; it was removed with
+    the `/landing/` route in #19.
+  - Re-audit `COMPETITOR_RESEARCH.md` before any comparison or competitive claim
+    returns: re-verify prices, quotas, and plan limits against first-party sources,
+    recording source URLs and research dates.
+  - Render unknown as unknown, not as feature absence.
+  - Re-review the `index.html` description, Open Graph, and Twitter copy
+    (“unlimited”, “no limits”) in the same audit.
 
 ## v1 gate
 
 - [ ] **V-01 P0 — stabilize the production address.**
   - Complete DNS/base-path/canonical work for the selected URL.
-  - Verify direct app, landing, share, and offline navigation URLs.
+  - Verify direct app, share, and offline navigation URLs.
 - [ ] **V-02 P0 — finalize release metadata.**
   - Remove prerelease suffix; align package, changelog, Help/About, and tags.
   - Publish release notes with supported browsers and known non-goals.
@@ -389,10 +397,10 @@ promoted into a release gate.
 - Community accounts, backend, payments, moderation, and enterprise features.
 - Select a support or donation platform before adding donation controls or copy.
 - Landing-page redesign or analytics.
-  - The current static page remains available at `/landing/`, but is not part of
-    the first-visit flow and must be redesigned before it is reconsidered there.
+  - The static page and its comparison table were removed with the `/landing/`
+    route in #19; any landing page must be redesigned before it returns.
   - Move competitive positioning to the landing page rather than About; rebuild
-    its comparison from dated, sourced claims in `COMPETITOR_RESEARCH.md`.
+    any comparison only from the B-11 re-audit.
   - Keep it outside the app bundle; it remains the fastest measured surface.
 
 ## Release checklist template
