@@ -92,7 +92,6 @@ src/
 ├── main.tsx             React entry point and top-level boundaries
 └── index.css            Tailwind import, tokens, themes, and global CSS
 public/
-├── landing/index.html   standalone marketing route
 ├── fonts/               self-hosted application and preview fonts
 └── favicon.svg
 ```
